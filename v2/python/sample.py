@@ -33,10 +33,10 @@ SEARCH_PATH = '/v2/search/'
 BUSINESS_PATH = '/v2/business/'
 
 # OAuth credential placeholders that must be filled in by users.
-CONSUMER_KEY = None
-CONSUMER_SECRET = None
-TOKEN = None
-TOKEN_SECRET = None
+CONSUMER_KEY = 'rSqsWmpLBhpl0lNUTAZJog'
+CONSUMER_SECRET = 'Ne7PDBVePlZMp8JPL_JLnlr2urY'
+TOKEN = 'VRMlrwO5dXLlK3JHTV4qsVmDvrbpbQuV'
+TOKEN_SECRET = '4aJ-Ey1wViLXaFghNudBfO185lU'
 
 
 def request(host, path, url_params=None):
@@ -68,6 +68,7 @@ def request(host, path, url_params=None):
             'oauth_consumer_key': CONSUMER_KEY
         }
     )
+    print(oauth_request)
     token = oauth2.Token(TOKEN, TOKEN_SECRET)
     oauth_request.sign_request(oauth2.SignatureMethod_HMAC_SHA1(), consumer, token)
     signed_url = oauth_request.to_url()
@@ -97,7 +98,7 @@ def search(term, location):
         'location': location,
         'limit': SEARCH_LIMIT
     }
-
+    print(url_params)
     return request(API_HOST, SEARCH_PATH, url_params=url_params)
 
 def get_business(business_id):
